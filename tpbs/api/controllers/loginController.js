@@ -6,8 +6,6 @@ exports.login_account = (req, res) => {
   console.log(req.body);
   LoginModel.authenciate({ username, password }, (err, exist) => {
     if (err) res.send(err);
-    console.log(exist);
-    // if (exist) res.json({ message: exist })
     res.json(exist);
   });
 };
