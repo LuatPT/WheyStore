@@ -4,13 +4,13 @@ const jwt = require('jsonwebtoken');
 const Cart = require('../models/cartModel');
 
 exports.get_all_carts = (req, res) => {
-  var token = req.headers['Access-Token'];
+  var token = req.headers['access-token'];
   if (token) {
     console.log(token);
     console.log(process.env.sercret);
     jwt.verify(token, process.env.secret, (err, decoded) => {
       if (err) {
-        return res.json({ message: 'invalid token' });
+        return res.send({ message: 'invalid token' });
       } else {
         // if everything is good, save to request for use in other routes
         req.decoded = decoded;
@@ -29,7 +29,7 @@ exports.get_all_carts = (req, res) => {
 
 exports.create_new_cart = (req, res) => {
   var new_cart = new Cart(req.body);
-  var token = req.headers['Access-Token'];
+  var token = req.headers['access-token'];
   if (token) {
     console.log(process.env.sercret);
     jwt.verify(token, process.env.secret, (err, decoded) => {
@@ -61,7 +61,6 @@ exports.get_detail_cart_by_userId = (req, res) => {
   var token = req.headers['access-token'];
   console.log(token);
   if (token) {
-    console.log(process.env.secret);
     jwt.verify(token, process.env.secret, (err, decoded) => {
       if (err) {
         return res.json({ message: 'invalid token' });
@@ -82,7 +81,7 @@ exports.get_detail_cart_by_userId = (req, res) => {
 };
 
 exports.delete_cart = (req, res) => {
-  var token = req.headers['Access-Token'];
+  var token = req.headers['access-token'];
   if (token) {
     console.log(process.env.sercret);
     jwt.verify(token, process.env.secret, (err, decoded) => {
@@ -104,9 +103,8 @@ exports.delete_cart = (req, res) => {
   }
 };
 exports.update_cart = (req, res) => {
-  var token = req.headers['Access-Token'];
+  var token = req.headers['access-token'];
   if (token) {
-    console.log(process.env.sercret);
     jwt.verify(token, process.env.secret, (err, decoded) => {
       if (err) {
         return res.json({ message: 'invalid token' });

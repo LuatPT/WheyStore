@@ -16,7 +16,7 @@ LoginModel.authenciate = (account, result) => {
         check: true,
       };
       var token = jwt.sign(payload, process.env.secret, {
-        expiresIn: 1440, // expires in 24 hours
+        expiresIn: 60, // expires in 24 hours
       });
       result(null, {
         userId: response[0].user_id,
