@@ -49,4 +49,11 @@ Cart.updateCart = (cart, cart_id, result) => {
     result(null, cart.cart_id);
   });
 };
+Cart.checkExistProduct = (product_id, result) => {
+  let sql = 'SELECT * FROM cart WHERE product_id = ?';
+  db.query(sql, product_id, (err, response) => {
+    if (err) result(err, null);
+    result(null, response[0]);
+  });
+};
 module.exports = Cart;

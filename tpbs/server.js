@@ -9,7 +9,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 //Cors must be put before route
 app.use(cors());
-
 let routes = require('./api/routes/appRoute'); //importing route
 routes(app);
 

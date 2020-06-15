@@ -4,42 +4,46 @@ module.exports = function (app) {
   let categorysCtrl = require('../controllers/categoryController');
   let loginCtrl = require('../controllers/loginController');
   let cartCtrl = require('../controllers/cartController');
+  let mailCtrl = require('../controllers/mailController');
   // todoList Routes
   app
-    .route('/products')
+    .route('/api/v1/products')
     .get(productsCtrl.get_all_products)
     .post(productsCtrl.create_new_product);
   //Product_id phải đặt tên đúng với productController
   app
-    .route('/products/:product_id')
+    .route('/api/v1/products/:product_id')
     .get(productsCtrl.get_detail_product)
     .put(productsCtrl.update_product)
     .delete(productsCtrl.delete_product);
 
   app
-    .route('/categorys')
+    .route('/api/v1/categorys')
     .get(categorysCtrl.get_all_categorys)
     .post(categorysCtrl.create_new_category);
   //category_id phải đặt tên đúng với productController
   app
-    .route('/categorys/:category_id')
+    .route('/api/v1/categorys/:category_id')
     .get(categorysCtrl.get_detail_category)
     .put(categorysCtrl.update_category)
     .delete(categorysCtrl.delete_category);
 
   //Login
-  app.route('/login').post(loginCtrl.login_account);
+  app.route('/api/v1/login').post(loginCtrl.login_account);
 
   app
-    .route('/carts')
+    .route('/api/v1/carts')
     .get(cartCtrl.get_all_carts)
     .post(cartCtrl.create_new_cart);
 
   app
-    .route('/carts/:cart_id')
+    .route('/api/v1/carts/:cart_id')
     .get(cartCtrl.get_detail_cart)
     .put(cartCtrl.update_cart)
     .delete(cartCtrl.delete_cart);
 
-  app.route('/cart/:user_id').get(cartCtrl.get_detail_cart_by_userId);
+  app.route('/api/v1/cart/:user_id').get(cartCtrl.get_detail_cart_by_userId);
+  app.route('/api/v1/cartss/:product_id').get(cartCtrl.check_exist_product);
+
+  app.route('/api/v1/mail').post(mailCtrl.send_mail);
 };
