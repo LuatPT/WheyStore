@@ -15,6 +15,7 @@ Cart.getAllCarts = (result) => {
 };
 Cart.createCart = (newCart, result) => {
   let sql = 'INSERT INTO cart SET ?';
+
   db.query(sql, newCart, (err, response) => {
     if (err) result(err, null);
     result(null, newCart.product_id);

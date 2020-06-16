@@ -27,6 +27,7 @@ exports.get_all_carts = (req, res) => {
 
 exports.create_new_cart = (req, res) => {
   var new_cart = new Cart(req.body);
+  console.log(req.body);
   var token = req.headers['access-token'];
   if (token) {
     jwt.verify(token, process.env.secret, (err, decoded) => {
