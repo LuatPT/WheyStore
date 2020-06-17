@@ -16,19 +16,55 @@ exports.send_mail = (req, res) => {
     },
   });
   var content = '';
+  let tongAll = 0;
+
   content += `
-    <div style="padding: 10px; background-color: #003375">
-        <div style="padding: 10px; background-color: white;">
-            <h4 style="color: #0085ff">Gửi mail với nodemailer và express</h4>
-            <span style="color: black">Đây là mail test</span>
-        </div>
-    </div>
-`;
-  console.log(req.body.mail);
+    <div>
+    <h4>Chào bạn, </h4>
+    <p>Đơn hàng của bạn tại WheyStore :</p>
+    <div style="background-color: #ccffff;">
+    <table style="width: 100%; margin-bottom: 1em;border-spacing: 0; text-align: center; border: 0.5px gray solid;" >
+    <thead>
+      <tr>
+        <th>Sản phẩm</th>
+        <th>Tổng</th>
+      </tr>
+    </thead>
+    <tbody>
+    `;
+  req.body.list.map((ele, key) => {
+    tongAll = tongAll + ele.tong;
+    content +=
+      '<tr>' +
+      '<td> ' +
+      ele.product_name +
+      'x' +
+      ele.soluong +
+      '</td>' +
+      '<td> ' +
+      ele.tong.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) +
+      '</td>' +
+      '</tr>';
+  });
+  content += `
+        </tbody>
+    </table>
+  </div>
+  `;
+  content +=
+    '<b> Tổng giá trị đơn hàng : ' +
+    tongAll.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) +
+    '</b>';
+  content += `    
+     <p>Đơn hàng sẽ gửi muộn nhất 3 ngày kể từ lúc email này gửi đi</p>
+     <h3>WHEY STORE</h3>
+     <p>0982678xxx</p>
+  </div> `;
+
   var mainOptions = {
     // thiết lập đối tượng, nội dung gửi mail
     from: 'LuatPT test',
-    to: req.body.mail,
+    to: req.body.email,
     subject: 'Test Nodemailer',
     text: 'Your text is here', //Thường thi mình không dùng cái này thay vào đó mình sử dụng html để dễ edit hơn
     html: content, //Nội dung html mình đã tạo trên kia :))
