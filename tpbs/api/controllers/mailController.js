@@ -65,7 +65,7 @@ exports.send_mail = (req, res) => {
     // thiết lập đối tượng, nội dung gửi mail
     from: 'LuatPT test',
     to: req.body.email,
-    subject: 'Test Nodemailer',
+    subject: '[Whey Store] Đơn hàng thực phẩm bổ sung',
     text: 'Your text is here', //Thường thi mình không dùng cái này thay vào đó mình sử dụng html để dễ edit hơn
     html: content, //Nội dung html mình đã tạo trên kia :))
   };

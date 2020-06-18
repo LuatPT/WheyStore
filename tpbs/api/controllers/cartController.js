@@ -27,7 +27,6 @@ exports.get_all_carts = (req, res) => {
 
 exports.create_new_cart = (req, res) => {
   var new_cart = new Cart(req.body);
-  console.log(req.body);
   var token = req.headers['access-token'];
   if (token) {
     jwt.verify(token, process.env.secret, (err, decoded) => {
@@ -36,7 +35,6 @@ exports.create_new_cart = (req, res) => {
       } else {
         // if everything is good, save to request for use in other routes
         req.decoded = decoded;
-        console.log('nguuu');
         Cart.createCart(new_cart, (err, cart) => {
           if (err) res.send(err);
           res.json('Cart with have been created');
@@ -89,7 +87,7 @@ exports.delete_cart = (req, res) => {
         req.decoded = decoded;
         Cart.deleteCart(req.params.cart_id, (err, cart) => {
           if (err) res.send(err);
-          res.json('category with have been deleted');
+          res.json('Đã xóa khỏi giỏ hàng!');
         });
       }
     });
@@ -101,8 +99,6 @@ exports.delete_cart = (req, res) => {
 };
 exports.update_cart = (req, res) => {
   var token = req.headers['access-token'];
-  console.log(token);
-  console.log(req.body);
   if (token) {
     jwt.verify(token, process.env.secret, (err, decoded) => {
       if (err) {
@@ -112,7 +108,7 @@ exports.update_cart = (req, res) => {
         req.decoded = decoded;
         Cart.updateCart(req.body, req.params.cart_id, (err, cart) => {
           if (err) res.send(err);
-          res.json('category with have been updated');
+          res.json('Cập nhật giỏ hàng thành công!');
         });
       }
     });
