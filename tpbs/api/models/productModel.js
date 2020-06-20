@@ -10,12 +10,33 @@ var Product = function (pro) {
   this.product_sale = pro.product_sale;
   this.product_endsale = pro.product_endsale;
 };
-Product.getAllProducts = (result) => {
+Product.getAllProducts = (param, result) => {
+  let start = (param.page - 1) * param.per_page;
+  console.log(param.per_page);
+
+  let error = false;
+  var rep = { list: [], total: 0 };
+  let sqlCount =
+    'select count(*) as total from categorys inner join products on categorys.category_id = products.category_id;';
   let sql =
-    'select * from categorys inner join products on categorys.category_id = products.category_id';
+    'select * from categorys inner join products on categorys.category_id = products.category_id limit ' +
+    start +
+    ',' +
+    param.per_page;
+  db.query(sqlCount, (err, response) => {
+    if (err) {
+      error = true;
+    }
+    rep.total = response[0].total;
+    // console.log(rep);
+  });
   db.query(sql, (err, response) => {
-    if (err) result(err, null);
-    result(null, response);
+    if (err) {
+      error = true;
+    }
+    rep.list = response;
+    //Chạy nhưng k đúng lắm
+    result(null, rep);
   });
 };
 Product.createProduct = (newProduct, result) => {
@@ -30,7 +51,7 @@ Product.getDetailProduct = (product_id, result) => {
   let sql = 'SELECT * FROM products WHERE product_id = ?';
   db.query(sql, product_id, (err, response) => {
     if (err) result(err, null);
-    result(null, response);
+    result(null, response[0]);
   });
 };
 Product.deleteProduct = (product_id, result) => {

@@ -7,9 +7,9 @@ module.exports = function (app) {
   let mailCtrl = require('../controllers/mailController');
   // todoList Routes
   app
-    .route('/api/v1/products')
-    .get(productsCtrl.get_all_products)
-    .post(productsCtrl.create_new_product);
+    .route('/api/v1/products/:page/:per_page')
+    .get(productsCtrl.get_all_products);
+  app.route('/api/v1/products').post(productsCtrl.create_new_product);
   //Product_id phải đặt tên đúng với productController
   app
     .route('/api/v1/products/:product_id')

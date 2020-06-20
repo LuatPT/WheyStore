@@ -8,7 +8,7 @@ var LoginModel = function (login) {
 };
 LoginModel.authenciate = (account, result) => {
   let sql =
-    'SELECT COUNT(1) as checkAuth, user_id FROM users WHERE user_name = ? and password = ? ';
+    'SELECT COUNT(1) as checkAuth, user_id, role FROM users WHERE user_name = ? and password = ? ';
   db.query(sql, [account.username, account.password], (err, response) => {
     if (err) result(err, null);
     if (response[0].checkAuth == 1) {
@@ -21,6 +21,7 @@ LoginModel.authenciate = (account, result) => {
       console.log(token);
       result(null, {
         userId: response[0].user_id,
+        role: response[0].role,
         message: true,
         jwt: token,
       });
