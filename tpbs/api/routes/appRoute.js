@@ -6,6 +6,7 @@ module.exports = function (app) {
   let cartCtrl = require('../controllers/cartController');
   let mailCtrl = require('../controllers/mailController');
   let rateCtrl = require('../controllers/rateController');
+  let postCtrl = require('../controllers/postController');
   // todoList Routes
   app
     .route('/api/v1/products/:page/:per_page')
@@ -42,11 +43,14 @@ module.exports = function (app) {
     .get(cartCtrl.get_detail_cart)
     .put(cartCtrl.update_cart)
     .delete(cartCtrl.delete_cart);
-
+  // Post
+  app
+    .route('/api/v1/posts')
+    .get(postCtrl.get_new_posts)
   //Rate function
-  // app
-  //   .route('/api/v1/rates/')
-  //   .post(rateCtrl.create_new_rate);
+  app
+    .route('/api/v1/rates/')
+    .post(rateCtrl.create_new_rate);
   // app
   //   .route('/api/v1/rates/:rate_id')
   //   .put(rateCtrl.update_rate)

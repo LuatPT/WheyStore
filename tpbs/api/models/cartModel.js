@@ -8,7 +8,6 @@ var Cart = function (cart) {
 Cart.getAllCarts = (result) => {
   let sql = 'SELECT * from cart';
   db.query(sql, (err, response) => {
-    console.log(response);
     if (err) result(err, null);
     result(null, response);
   });

@@ -8,7 +8,6 @@ exports.get_all_categorys = (req, res) => {
 };
 exports.create_new_category = (req, res) => {
   var new_category = new Category(req.body);
-  console.log(req.body);
   Category.createCategory(new_category, (err, category) => {
     if (err) res.send(err);
     res.json('category with ' + category[0].category_id + ' have been created');

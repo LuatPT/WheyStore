@@ -71,6 +71,6 @@ exports.send_mail = (req, res) => {
   };
   transporter.sendMail(mainOptions, function (err, info) {
     if (err) res.send(err);
-    console.log('send success');
+    console.log('Send email success');
   });
 };

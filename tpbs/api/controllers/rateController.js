@@ -6,3 +6,10 @@ exports.get_rate_by_product = (req, res) => {
     res.send(rates);
   });
 };
+exports.create_new_rate = (req, res) => {
+  var new_rate = new Rate(req.body);
+  Rate.createRate(new_rate, (err, rate) => {
+    if (err) res.send(err);
+    res.json('Rate with have been created');
+  });
+};

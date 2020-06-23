@@ -12,8 +12,6 @@ var Product = function (pro) {
 };
 Product.getAllProducts = (param, result) => {
   let start = (param.page - 1) * param.per_page;
-  console.log(param.per_page);
-
   let error = false;
   var rep = { list: [], total: 0 };
   let sqlCount =
@@ -28,7 +26,6 @@ Product.getAllProducts = (param, result) => {
       error = true;
     }
     rep.total = response[0].total;
-    // console.log(rep);
   });
   db.query(sql, (err, response) => {
     if (err) {
@@ -47,7 +44,6 @@ Product.createProduct = (newProduct, result) => {
   });
 };
 Product.getDetailProduct = (product_id, result) => {
-  console.log(product_id);
   let sql = 'SELECT * FROM products WHERE product_id = ?';
   db.query(sql, product_id, (err, response) => {
     if (err) result(err, null);
