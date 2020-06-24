@@ -47,6 +47,12 @@ module.exports = function (app) {
   app
     .route('/api/v1/posts')
     .get(postCtrl.get_new_posts)
+  app
+    .route('/api/v1/posts/:post_id')
+    .get(postCtrl.get_detail_post)
+  app
+    .route('/api/v1/allposts')
+    .get(postCtrl.get_all_posts)
   //Rate function
   app
     .route('/api/v1/rates/')
@@ -59,6 +65,10 @@ module.exports = function (app) {
   app
     .route('/api/v1/rate/:product_id')
     .get(rateCtrl.get_rate_by_product)
+  app
+    .route('/api/v1/avgrate/:product_id')
+    .get(rateCtrl.get_avg_rate_by_product)
+
   //Other
 
   app.route('/api/v1/cart/:user_id').get(cartCtrl.get_detail_cart_by_userId);
