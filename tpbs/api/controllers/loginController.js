@@ -8,3 +8,14 @@ exports.login_account = (req, res) => {
     res.json(exist);
   });
 };
+exports.register_account = (req, res) => {
+  var newAccout = {
+    user_name: req.body.userName,
+    password: req.body.passWord,
+    role: 1
+  }
+  LoginModel.register(newAccout, (err, message) => {
+    if (err) res.send(err);
+    res.json(message);
+  });
+};

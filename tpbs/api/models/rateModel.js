@@ -20,7 +20,6 @@ Rate.getAvgRateByProduct = (product_id, result) => {
   let sql = 'SELECT AVG(rate) as avgRate FROM rates WHERE product_id = ?';
   db.query(sql, product_id, (err, response) => {
     if (err) result(err, null);
-    console.log(response[0].avgRate);
     result(null, response[0]);
   });
 };

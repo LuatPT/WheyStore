@@ -30,4 +30,11 @@ LoginModel.authenciate = (account, result) => {
     }
   });
 };
+LoginModel.register = (account, result) => {
+  let sql = 'INSERT INTO users SET ?';
+  db.query(sql, account, (err, response) => {
+    if (err) result(err, null);
+    result(null, 'Đăng ký thành công !');
+  });
+};
 module.exports = LoginModel;
