@@ -1,7 +1,6 @@
 'use strict';
 const db = require('../controllers/db');
 var Product = function (pro) {
-  this.product_id = pro.product_id;
   this.product_name = pro.product_name;
   this.category_id = pro.category_id;
   this.product_img = pro.product_img;
@@ -37,10 +36,12 @@ Product.getAllProducts = (param, result) => {
   });
 };
 Product.createProduct = (newProduct, result) => {
+  console.log(newProduct);
+
   let sql = 'INSERT INTO products SET ?';
   db.query(sql, newProduct, (err, response) => {
     if (err) result(err, null);
-    result(null, newProduct.product_id);
+    result(null, newProduct);
   });
 };
 Product.getDetailProduct = (product_id, result) => {

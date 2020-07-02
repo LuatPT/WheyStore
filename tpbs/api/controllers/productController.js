@@ -10,7 +10,7 @@ exports.create_new_product = (req, res) => {
   var new_product = new Product(req.body);
   Product.createProduct(new_product, (err, product) => {
     if (err) res.send(err);
-    res.json('Product with ' + product.product_id + ' have been created');
+    res.json('Product with have been created');
   });
 };
 exports.get_detail_product = (req, res) => {
