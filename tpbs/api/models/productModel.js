@@ -59,6 +59,7 @@ Product.deleteProduct = (product_id, result) => {
   });
 };
 Product.updateProduct = (product, result) => {
+  console.log(product);
   let sql = 'UPDATE products SET ? WHERE product_id = ?';
   db.query(sql, [product, product.product_id], (err, response) => {
     if (err) result(err, null);

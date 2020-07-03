@@ -28,6 +28,6 @@ exports.delete_product = (req, res) => {
 exports.update_product = (req, res) => {
   Product.updateProduct(req.body, (err, product) => {
     if (err) res.send(err);
-    res.json('Product with ' + product.product_id + 'have been updated');
+    res.json('Product have been updated');
   });
 };
