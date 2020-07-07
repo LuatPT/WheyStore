@@ -7,6 +7,7 @@ module.exports = function (app) {
   let mailCtrl = require('../controllers/mailController');
   let rateCtrl = require('../controllers/rateController');
   let postCtrl = require('../controllers/postController');
+  let userCtrl = require('../controllers/userController');
   // todoList Routes
   app
     .route('/api/v1/products/:page/:per_page')
@@ -30,6 +31,11 @@ module.exports = function (app) {
     .put(categorysCtrl.update_category)
     .delete(categorysCtrl.delete_category);
 
+  app.route('/api/v1/users').get(userCtrl.get_all_users);
+  app.route('/api/v1/users/:user_id')
+    .get(userCtrl.get_detail_user)
+    .put(userCtrl.update_user)
+    .delete(userCtrl.delete_user)
   //Login
   app.route('/api/v1/login').post(loginCtrl.login_account);
   //Login
