@@ -12,28 +12,28 @@ User.getAllUsers = (result) => {
     result(null, response);
   });
 };
-User.createProduct = (newUser, result) => {
+User.createUser = (newUser, result) => {
   let sql = 'INSERT INTO users SET ?';
   db.query(sql, newUser, (err, response) => {
     if (err) result(err, null);
     result(null, newUser);
   });
 };
-User.getDetailProduct = (user_id, result) => {
+User.getDetailUser = (user_id, result) => {
   let sql = 'SELECT * FROM users WHERE user_id = ?';
   db.query(sql, user_id, (err, response) => {
     if (err) result(err, null);
     result(null, response[0]);
   });
 };
-User.deleteProduct = (user_id, result) => {
+User.deleteUser = (user_id, result) => {
   let sql = 'DELETE FROM users WHERE user_id = ?';
   db.query(sql, user_id, (err, response) => {
     if (err) result(err, null);
     result(null, user_id);
   });
 };
-User.updateProduct = (user, result) => {
+User.updateUser = (user, result) => {
   let sql = 'UPDATE users SET ? WHERE user_id = ?';
   db.query(sql, [user, user.user_id], (err, response) => {
     if (err) result(err, null);
