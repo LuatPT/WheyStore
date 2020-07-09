@@ -54,9 +54,12 @@ module.exports = function (app) {
   app
     .route('/api/v1/posts')
     .get(postCtrl.get_new_posts)
+    .post(postCtrl.create_new_posts)
   app
     .route('/api/v1/posts/:post_id')
     .get(postCtrl.get_detail_post)
+    .put(postCtrl.update_post)
+    .delete(postCtrl.delete_post)
   app
     .route('/api/v1/allposts')
     .get(postCtrl.get_all_posts)

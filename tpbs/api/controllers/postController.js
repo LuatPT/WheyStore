@@ -18,3 +18,21 @@ exports.get_detail_post = (req, res) => {
     res.send(postObj);
   });
 };
+exports.delete_post = (req, res) => {
+  Post.deletePost(req.params.post_id, (err, postObj) => {
+    if (err) res.send(err);
+    res.send({ message: 'Post have been deleted!' });
+  });
+};
+exports.update_post = (req, res) => {
+  Post.updatePost(req.body, (err, postObj) => {
+    if (err) res.send(err);
+    res.send({ message: 'Post have been updated!' });
+  });
+};
+exports.create_new_posts = (req, res) => {
+  Post.createPost(req.body, (err, postObj) => {
+    if (err) res.send(err);
+    res.send({ message: 'Post have been created!' });
+  });
+};
