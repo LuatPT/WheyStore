@@ -7,9 +7,9 @@ exports.get_new_posts = (req, res) => {
   });
 };
 exports.get_all_posts = (req, res) => {
-  Post.getAllPosts((err, posts) => {
+  Post.getAllPosts((err, post) => {
     if (err) res.send(err);
-    res.send(posts);
+    res.send(post);
   });
 };
 exports.get_detail_post = (req, res) => {
@@ -30,7 +30,7 @@ exports.update_post = (req, res) => {
     res.send({ message: 'Post have been updated!' });
   });
 };
-exports.create_new_posts = (req, res) => {
+exports.create_new_post = (req, res) => {
   Post.createPost(req.body, (err, postObj) => {
     if (err) res.send(err);
     res.send({ message: 'Post have been created!' });

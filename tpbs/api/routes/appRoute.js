@@ -8,6 +8,7 @@ module.exports = function (app) {
   let rateCtrl = require('../controllers/rateController');
   let postCtrl = require('../controllers/postController');
   let userCtrl = require('../controllers/userController');
+  let trainerCtrl = require('../controllers/trainerController');
   // todoList Routes
   app
     .route('/api/v1/products/:page/:per_page')
@@ -54,7 +55,7 @@ module.exports = function (app) {
   app
     .route('/api/v1/posts')
     .get(postCtrl.get_new_posts)
-    .post(postCtrl.create_new_posts)
+    .post(postCtrl.create_new_post)
   app
     .route('/api/v1/posts/:post_id')
     .get(postCtrl.get_detail_post)
@@ -79,6 +80,16 @@ module.exports = function (app) {
     .route('/api/v1/avgrate/:product_id')
     .get(rateCtrl.get_avg_rate_by_product)
 
+  //Trainer
+  app
+    .route('/api/v1/trainers')
+    .get(trainerCtrl.get_all_trainer)
+    .post(trainerCtrl.create_new_trainer)
+  app
+    .route('/api/v1/trainers/:trainer_id')
+    .get(trainerCtrl.get_detail_trainer)
+    .put(trainerCtrl.update_trainer)
+    .delete(trainerCtrl.delete_trainer)
   //Other
 
   app.route('/api/v1/cart/:user_id').get(cartCtrl.get_detail_cart_by_userId);
