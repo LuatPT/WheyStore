@@ -26,7 +26,7 @@ Trainer.deleteTrainer = (trainer_id, result) => {
   let sql = 'DELETE FROM trainers WHERE trainer_id = ?';
   db.query(sql, trainer_id, (err, response) => {
     if (err) result(err, null);
-    result(null, post_id);
+    result(null, trainer_id);
   });
 };
 Trainer.updateTrainer = (trainer, result) => {
