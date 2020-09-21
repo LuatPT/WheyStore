@@ -4,6 +4,8 @@ var Cart = function (cart) {
   this.user_id = cart.user_id;
   this.product_id = cart.product_id;
   this.soluong = cart.soluong;
+  this.taste = cart.taste;
+  this.gift = cart.gift;
 };
 Cart.getAllCarts = (result) => {
   let sql = 'SELECT * from cart';
@@ -29,7 +31,7 @@ Cart.getDetailCart = (cart_id, result) => {
 };
 Cart.getDetailCartByUserId = (user_id, result) => {
   let sql =
-    'SELECT users.user_id, users.user_name,products.product_id, products.product_name,  products.product_img,cart.cart_id, cart.soluong, (cart.soluong*products.product_price) as tong from cart inner join products on products.product_id = cart.product_id inner join users on users.user_id = cart.user_id where cart.user_id = ?';
+    'SELECT users.user_id, users.user_name,products.product_id, products.product_name,  products.product_img,cart.cart_id, cart.soluong, cart.taste, cart.gift, (cart.soluong*products.product_price) as tong from cart inner join products on products.product_id = cart.product_id inner join users on users.user_id = cart.user_id where cart.user_id = ?';
   db.query(sql, user_id, (err, response) => {
     if (err) result(err, null);
     result(null, response);
