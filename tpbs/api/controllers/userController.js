@@ -28,6 +28,6 @@ exports.delete_user = (req, res) => {
 exports.update_user = (req, res) => {
   User.updateUser(req.body, (err, user) => {
     if (err) res.send(err);
-    res.json('user have been updated');
+    res.json('User have been updated');
   });
 };

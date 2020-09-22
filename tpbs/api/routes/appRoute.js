@@ -39,7 +39,7 @@ module.exports = function (app) {
     .delete(userCtrl.delete_user)
   //Login
   app.route('/api/v1/login').post(loginCtrl.login_account);
-  //Login
+  //Register
   app.route('/api/v1/register').post(loginCtrl.register_account);
   app
     .route('/api/v1/carts')
