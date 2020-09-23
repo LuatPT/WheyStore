@@ -9,6 +9,7 @@ module.exports = function (app) {
   let postCtrl = require('../controllers/postController');
   let userCtrl = require('../controllers/userController');
   let trainerCtrl = require('../controllers/trainerController');
+  let voucherCtrl = require('../controllers/voucherController');
   // todoList Routes
   app
     .route('/api/v1/products/:page/:per_page')
@@ -96,4 +97,8 @@ module.exports = function (app) {
   app.route('/api/v1/cartss/:product_id').get(cartCtrl.check_exist_product);
 
   app.route('/api/v1/mail').post(mailCtrl.send_mail);
+  //Voucher function
+  app
+    .route('/api/v1/voucher/:voucher_code')
+    .get(voucherCtrl.check_voucher);
 };

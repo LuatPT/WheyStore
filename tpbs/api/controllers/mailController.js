@@ -52,19 +52,19 @@ exports.send_mail = (req, res) => {
   </div>
   `;
   content +=
-    '<b> Tổng giá trị đơn hàng : ' +
-    tongAll.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) +
-    '</b>';
-  content += `    
+    `<b> Tổng giá trị đơn hàng : 
+    ${tongAll.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
+    </b>  
      <p>Đơn hàng sẽ gửi muộn nhất 3 ngày kể từ lúc email này gửi đi</p>
      <h3>WHEY STORE</h3>
-     <p>0982678xxx</p>
+     <p>
+     0982678xxx</p>
   </div> `;
 
   var mainOptions = {
     // thiết lập đối tượng, nội dung gửi mail
     from: 'LuatPT test',
-    to: req.body.email,
+    to: req.body.eomail,
     subject: '[Whey Store] Đơn hàng thực phẩm bổ sung',
     text: 'Your text is here', //Thường thi mình không dùng cái này thay vào đó mình sử dụng html để dễ edit hơn
     html: content, //Nội dung html mình đã tạo trên kia :))
