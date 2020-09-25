@@ -33,7 +33,6 @@ exports.send_mail = (req, res) => {
     <tbody>
     `;
   req.body.list.map((ele, key) => {
-    tongAll = tongAll + ele.tong;
     content +=
       '<tr>' +
       '<td> ' +
@@ -53,7 +52,7 @@ exports.send_mail = (req, res) => {
   `;
   content +=
     `<b> Tổng giá trị đơn hàng : 
-    ${tongAll.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
+    ${(req.body.tongAll).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
     </b>  
      <p>Đơn hàng sẽ gửi muộn nhất 3 ngày kể từ lúc email này gửi đi</p>
      <h3>WHEY STORE</h3>
@@ -62,12 +61,12 @@ exports.send_mail = (req, res) => {
   </div> `;
 
   var mainOptions = {
-    // thiết lập đối tượng, nội dung gửi mail
+
     from: 'LuatPT test',
-    to: req.body.eomail,
+    to: req.body.email,
     subject: '[Whey Store] Đơn hàng thực phẩm bổ sung',
-    text: 'Your text is here', //Thường thi mình không dùng cái này thay vào đó mình sử dụng html để dễ edit hơn
-    html: content, //Nội dung html mình đã tạo trên kia :))
+    text: 'Your text is here',
+    html: content,
   };
   transporter.sendMail(mainOptions, function (err, info) {
     if (err) res.send(err);
