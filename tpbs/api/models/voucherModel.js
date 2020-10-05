@@ -6,7 +6,13 @@ var Voucher = function (voucher) {
   this.voucher_expire = voucher.voucher_expire;
   this.voucher_code = voucher.voucher_code;
 };
-
+Voucher.getAllVouchers = (result) => {
+  let sql = 'SELECT * FROM vouchers';
+  db.query(sql, (err, response) => {
+    if (err) result(err, null);
+    result(null, response);
+  });
+};
 Voucher.checkVoucher = (voucherCode, result) => {
   let sql = 'SELECT * FROM vouchers WHERE voucher_code = ?';
   db.query(sql, voucherCode, (err, response) => {

@@ -5,7 +5,7 @@ var Category = function (cate) {
   this.category_name = cate.category_name;
   this.category_status = cate.category_status;
 };
-Category.getAllcategorys = (result) => {
+Category.getAllCategorys = (result) => {
   let sql = 'SELECT * FROM categorys';
   db.query(sql, (err, response) => {
     if (err) result(err, null);

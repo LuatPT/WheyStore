@@ -1,7 +1,7 @@
 'use strict';
 const Category = require('../models/categoryModel');
 exports.get_all_categorys = (req, res) => {
-  Category.getAllcategorys((err, categorys) => {
+  Category.getAllCategorys((err, categorys) => {
     if (err) res.send(err);
     res.send(categorys);
   });

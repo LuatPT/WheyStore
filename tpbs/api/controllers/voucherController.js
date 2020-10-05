@@ -8,3 +8,9 @@ exports.check_voucher = (req, res) => {
     res.send(voucher);
   });
 };
+exports.get_all_vouchers = (req, res) => {
+  Voucher.getAllVouchers((err, vouchers) => {
+    if (err) res.send(err);
+    res.send(vouchers);
+  });
+};

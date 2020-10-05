@@ -101,4 +101,7 @@ module.exports = function (app) {
   app
     .route('/api/v1/voucher/:voucher_code')
     .get(voucherCtrl.check_voucher);
-};
+  app
+    .route('/api/v1/vouchers')
+    .get(voucherCtrl.get_all_vouchers);
+}
